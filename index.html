@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenWire 开讯 — AI news & engineering, summarized on your iPhone</title>
+<meta name="description" content="OpenWire brings AI news, research and engineering posts from Anthropic, OpenAI, Hacker News, InfoQ, arXiv, GitHub and 20+ primary sources into one daily briefing. Key points extracted on your iPhone, Chinese and 7 more languages, no account, no ads.">
+<meta property="og:title" content="OpenWire 开讯 — AI news, summarized">
+<meta property="og:description" content="A daily AI briefing for engineers, from 26 primary sources. Summarized on device, in English or Chinese.">
+<meta property="og:image" content="https://thevsxtech.github.io/openwire/icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", Roboto, sans-serif;
+    color: #1c1c1e;
+    background: #fafafa;
+    line-height: 1.6;
+  }
+  .hero {
+    background: radial-gradient(90% 70% at 50% 0%, rgba(245,196,81,0.18) 0%, rgba(245,196,81,0) 60%), #111113;
+    color: #F4F4F6;
+    padding: 72px 24px 88px;
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    background: rgba(245,196,81,0.14); color: #F5C451;
+    border-radius: 999px; padding: 4px 12px; margin-bottom: 24px;
+  }
+  .logo {
+    width: 104px; height: 104px; border-radius: 24px; display: block; margin: 0 auto 24px;
+    box-shadow: 0 14px 40px rgba(233,165,32,0.35);
+  }
+  h1 { font-size: 46px; font-weight: 800; letter-spacing: -0.8px; line-height: 1.15; }
+  h1 .zh { color: #F5C451; }
+  .tagline { font-size: 20px; font-weight: 600; max-width: 600px; margin: 18px auto 6px; }
+  .tagline .ai { color: #F5C451; }
+  .tagline.zh { font-size: 16px; font-weight: 500; color: #A3A3AD; margin: 0 auto 36px; }
+  .badge {
+    display: inline-block; background: #F5C451; color: #16130A;
+    padding: 14px 28px; border-radius: 14px; text-decoration: none; font-weight: 700; font-size: 16px;
+    transition: transform 0.15s;
+  }
+  .badge:hover { transform: scale(1.03); }
+  .stats { display: flex; justify-content: center; gap: 32px; margin-top: 40px; flex-wrap: wrap; }
+  .stats div { font-size: 13px; color: #A3A3AD; }
+  .stats strong { display: block; font-size: 26px; color: #F5C451; font-weight: 800; }
+  main { max-width: 760px; margin: 0 auto; padding: 64px 24px; }
+  h2 { font-size: 28px; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.3px; }
+  h2 .zh { display: block; font-size: 15px; font-weight: 600; color: #8e8e93; letter-spacing: 0; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 56px; }
+  .feature { background: #fff; padding: 22px; border-radius: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); border: 1px solid #EDEBE6; }
+  .feature .icon { font-size: 22px; margin-bottom: 6px; }
+  .feature h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .feature h3 .zh { color: #8e8e93; font-weight: 500; font-size: 14px; margin-left: 4px; }
+  .feature p { color: #3c3c43; font-size: 15px; }
+  .feature p.zh { color: #6c6c70; font-size: 14px; margin-top: 4px; }
+  .sources { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .sources span { background: #fff; border: 1px solid #EDEBE6; border-radius: 999px; padding: 6px 14px; font-size: 14px; color: #3c3c43; }
+  .fineprint { font-size: 13px; color: #8e8e93; margin-bottom: 56px; }
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 56px; }
+  .plan { background: #fff; padding: 24px; border-radius: 18px; border: 1px solid #EDEBE6; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+  .plan.pro { border: 2px solid #E9A520; }
+  .plan h3 { font-size: 18px; margin-bottom: 2px; }
+  .plan .price { font-size: 14px; color: #B8720B; font-weight: 700; margin-bottom: 12px; }
+  .plan ul { list-style: none; color: #3c3c43; font-size: 14px; }
+  .plan li { padding: 5px 0; }
+  .plan li .zh { display: block; color: #8e8e93; font-size: 13px; }
+  .note { background: #fff; border-left: 4px solid #E9A520; padding: 20px 24px; border-radius: 10px; color: #3c3c43; font-size: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+  .note .zh { color: #6c6c70; font-size: 14px; margin-top: 6px; }
+  footer { text-align: center; padding: 32px 24px 48px; color: #8e8e93; font-size: 14px; border-top: 1px solid #e5e5e7; }
+  footer a { color: #B8720B; text-decoration: none; margin: 0 12px; }
+  footer a:hover { text-decoration: underline; }
+  @media (max-width: 640px) {
+    h1 { font-size: 38px; }
+    .hero { padding: 56px 20px 72px; }
+    .features, .plans { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <span class="eyebrow">For engineers &amp; AI practitioners</span>
+  <img class="logo" src="icon.png" alt="OpenWire app icon">
+  <h1>OpenWire <span class="zh">开讯</span></h1>
+  <p class="tagline">Today in <span class="ai">AI</span>, summarized — from the sources engineers actually read.</p>
+  <p class="tagline zh">每天几分钟，读懂 AI 圈最重要的资讯、技术博文与论文。</p>
+  <a class="badge" href="#" id="appstore-link">App Store · Coming soon</a>
+  <div class="stats">
+    <div><strong>26</strong>Primary sources</div>
+    <div><strong>3</strong>Tabs: News · Tech · Enterprise</div>
+    <div><strong>8</strong>Reading languages</div>
+    <div><strong>0</strong>Servers · accounts · ads</div>
+  </div>
+</section>
+
+<main>
+  <h2>Why OpenWire?<span class="zh">为什么用开讯</span></h2>
+  <div class="features">
+    <div class="feature">
+      <div class="icon">🗞️</div>
+      <h3>Daily briefing <span class="zh">每日简报</span></h3>
+      <p>Ten must-reads every day — top news, enterprise AI and one deep-dive. Read them all to check in and keep your streak.</p>
+      <p class="zh">每天 10 篇必读，读完即打卡。</p>
+    </div>
+    <div class="feature">
+      <div class="icon">✂️</div>
+      <h3>Key points, not clickbait <span class="zh">提炼要点</span></h3>
+      <p>Each story comes with a summary, key points and why it matters — extracted from the original on your iPhone. The original is always one tap away.</p>
+      <p class="zh">在手机上从原文中提炼摘要与要点，并保留原文链接。</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🧑‍💻</div>
+      <h3>Tech: posts, papers, repos <span class="zh">技术博文</span></h3>
+      <p>Engineering blogs, trending papers from Hugging Face and arXiv, and the AI repos taking off on GitHub — filtered by Agents, RAG, Coding, Infra and more.</p>
+      <p class="zh">技术博文、热门论文与开源项目，按主题分类。</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🏢</div>
+      <h3>Enterprise AI <span class="zh">企业 AI</span></h3>
+      <p>Real deployments, platforms, governance and deals — sorted by topic and industry for people shipping AI inside companies.</p>
+      <p class="zh">企业落地案例、平台、治理与投资动态。</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🌏</div>
+      <h3>English &amp; 中文 <span class="zh">中英双语</span></h3>
+      <p>Read in English, Chinese or side-by-side bilingual, plus Japanese, Korean, Spanish, French and German — translated on device by Apple.</p>
+      <p class="zh">英文、中文或双语对照阅读，Apple 端侧翻译。</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🌗</div>
+      <h3>Two looks <span class="zh">两种风格</span></h3>
+      <p>Amber Dark with read-later reading themes, or Signal — clean white with monospaced metadata.</p>
+      <p class="zh">深色琥珀与浅色极简两种主题。</p>
+    </div>
+  </div>
+
+  <h2>Where the stories come from<span class="zh">内容来源</span></h2>
+  <div class="sources">
+    <span>Anthropic</span><span>OpenAI</span><span>Hacker News</span><span>InfoQ</span>
+    <span>Google DeepMind</span><span>Google Research</span><span>Hugging Face</span><span>Microsoft Research</span>
+    <span>arXiv</span><span>Hugging Face Papers</span><span>GitHub</span><span>DEV Community</span>
+    <span>Simon Willison</span><span>Lil'Log</span><span>Latent Space</span><span>Interconnects</span>
+    <span>TechCrunch</span><span>The Verge</span><span>VentureBeat</span><span>AWS ML Blog</span>
+    <span>Google Cloud</span><span>Microsoft AI</span><span>CIO.com</span>
+  </div>
+  <p class="fineprint">Public feeds and pages, read directly by your device. OpenWire is independent and not affiliated with these publishers; every story links to its original, and all rights stay with the publisher.</p>
+
+  <h2>Free &amp; Pro<span class="zh">免费版与 Pro</span></h2>
+  <div class="plans">
+    <div class="plan">
+      <h3>Free</h3>
+      <div class="price">$0</div>
+      <ul>
+        <li>All 26 sources, summaries and key points<span class="zh">全部来源与摘要</span></li>
+        <li>Daily briefing, check-in streak and reminder<span class="zh">每日简报与打卡</span></li>
+        <li>English, Chinese and bilingual reading<span class="zh">中英双语</span></li>
+        <li>The last 14 days of stories<span class="zh">最近 14 天内容</span></li>
+        <li>Both themes<span class="zh">两种主题</span></li>
+      </ul>
+    </div>
+    <div class="plan pro">
+      <h3>Pro</h3>
+      <div class="price">$9.99 · one-time purchase</div>
+      <ul>
+        <li>Add your own RSS sources<span class="zh">自定义 RSS 来源</span></li>
+        <li>Keyword alerts — Claude, MCP, RAG, anything<span class="zh">关键词提醒</span></li>
+        <li>Saved stories kept forever, synced via iCloud<span class="zh">收藏永久保存</span></li>
+        <li>Full archive beyond 14 days<span class="zh">完整历史</span></li>
+        <li>Japanese, Korean, Spanish, French, German<span class="zh">更多阅读语言</span></li>
+        <li>No subscription · Family Sharing<span class="zh">无订阅 · 支持家庭共享</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <p>No account, no ads, no tracking. Stories are fetched and summarized on your iPhone — we don't run servers and never see what you read.</p>
+    <p class="zh">无需注册，无广告，无追踪。内容在你的手机上抓取和处理，我们没有服务器，也看不到你读了什么。</p>
+  </div>
+</main>
+
+<footer>
+  <a href="support.html">Support</a> ·
+  <a href="privacy.html">Privacy</a> ·
+  <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms</a> ·
+  <a href="mailto:thevsx.tech@gmail.com">Contact</a>
+  <p style="margin-top:16px;">OpenWire 开讯. © 2026 OpenWord. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
